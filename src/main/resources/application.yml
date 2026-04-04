@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: sistema-rendiciones-backend
+  
+  profiles:
+    active: dev
+  
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: sistema-rendiciones
+            client-secret: INSTITUCIONAL_SECRET_PLACEHOLDER
+            token-uri: http://localhost:8080/realms/institucional/protocol/openid-connect/token
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/institucional
+          jwk-set-uri: http://localhost:8080/realms/institucional/protocol/openid-connect/certs
+  
+  sql:
+    init:
+      encoding: UTF-8 # Forzar lectura de data.sql en UTF-8
+  
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+  
+  mail:
+    host: smtp.institucional.edu
+    port: 587
+    username: notificaciones@institucional.edu
+    password: smtp-password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+app:
+  security:
+    jwt:
+      secret: "institucional_secret_key_debe_ser_larga_y_segura_123456"
+      expiration: 3600 # 1 hora en segundos
+      refresh-expiration: 86400 # 24 horas en segundos
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    com.personal.rendiciones: DEBUG
