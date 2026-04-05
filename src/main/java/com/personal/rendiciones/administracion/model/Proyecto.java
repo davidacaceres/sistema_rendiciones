@@ -28,6 +28,10 @@ public class Proyecto extends BaseEntidad {
     @JoinColumn(name = "idgerencia", nullable = true)
     private Gerencia gerencia;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idjefe_proyecto", nullable = true)
+    private Usuario jefeProyecto;
+
     public Proyecto() {}
 
     public Long getIdproyecto() {
@@ -68,5 +72,13 @@ public class Proyecto extends BaseEntidad {
 
     public void setGerencia(Gerencia gerencia) {
         this.gerencia = gerencia;
+    }
+
+    public Usuario getJefeProyecto() {
+        return jefeProyecto;
+    }
+
+    public void setJefeProyecto(Usuario jefeProyecto) {
+        this.jefeProyecto = jefeProyecto;
     }
 }

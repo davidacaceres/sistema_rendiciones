@@ -3,8 +3,10 @@ package com.personal.rendiciones.administracion.service;
 import com.personal.rendiciones.administracion.dto.ProyectoDTO;
 import com.personal.rendiciones.administracion.model.Gerencia;
 import com.personal.rendiciones.administracion.model.Proyecto;
+import com.personal.rendiciones.administracion.model.Usuario;
 import com.personal.rendiciones.administracion.repository.GerenciaRepository;
 import com.personal.rendiciones.administracion.repository.ProyectoRepository;
+import com.personal.rendiciones.administracion.repository.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,11 +24,13 @@ public class ProyectoService {
 
     private final ProyectoRepository proyectoRepository;
     private final GerenciaRepository gerenciaRepository;
+    private final UsuarioRepository usuarioRepository;
     private static final String ERROR_PROYECTO_NO_ENCONTRADO = "Proyecto no encontrado";
 
-    public ProyectoService(ProyectoRepository proyectoRepository, GerenciaRepository gerenciaRepository) {
+    public ProyectoService(ProyectoRepository proyectoRepository, GerenciaRepository gerenciaRepository, UsuarioRepository usuarioRepository) {
         this.proyectoRepository = proyectoRepository;
         this.gerenciaRepository = gerenciaRepository;
+        this.usuarioRepository = usuarioRepository;
     }
 
 
@@ -128,6 +132,11 @@ public class ProyectoService {
             dto.setIdgerencia(proyecto.getGerencia().getIdgerencia());
             dto.setNombreGerencia(proyecto.getGerencia().getNombre());
         }
+        if (proyecto.getJefeProyecto() != null) {
+            dto.setIdjefeProyecto(proyecto.getJefeProyecto().getIdusuario());
+            dto.setNombreJefeProyecto(proyecto.getJefeProyecto().getNombre());
+            dto.setTrigramaJefeProyecto(proyecto.getJefeProyecto().getTrigrama());
+        }
         dto.setFccreacion(proyecto.getFccreacion());
         dto.setFcmodificacion(proyecto.getFcmodificacion());
         return dto;
@@ -143,6 +152,14 @@ public class ProyectoService {
             proyecto.setGerencia(gerencia);
         } else {
             proyecto.setGerencia(null);
+        }
+
+        if (dto.getIdjefeProyecto() != null) {
+            Usuario jefe = usuarioRepository.findById(dto.getIdjefeProyecto())
+                    .orElseThrow(() -> new EntityNotFoundException("Jefe de Proyecto no encontrado"));
+            proyecto.setJefeProyecto(jefe);
+        } else {
+            throw new IllegalArgumentException("El Jefe de Proyecto es obligatorio");
         }
     }
 }

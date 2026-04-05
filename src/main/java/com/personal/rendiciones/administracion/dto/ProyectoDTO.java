@@ -11,6 +11,10 @@ public class ProyectoDTO {
     private Long idgerencia;
     private String nombreGerencia;
     
+    private Long idjefeProyecto;
+    private String nombreJefeProyecto;
+    private String trigramaJefeProyecto;
+    
     // Auditing fields
     private Instant fccreacion;
     private Instant fcmodificacion;
@@ -63,6 +67,30 @@ public class ProyectoDTO {
 
     public void setNombreGerencia(String nombreGerencia) {
         this.nombreGerencia = nombreGerencia;
+    }
+
+    public Long getIdjefeProyecto() {
+        return idjefeProyecto;
+    }
+
+    public void setIdjefeProyecto(Long idjefeProyecto) {
+        this.idjefeProyecto = idjefeProyecto;
+    }
+
+    public String getNombreJefeProyecto() {
+        return nombreJefeProyecto;
+    }
+
+    public void setNombreJefeProyecto(String nombreJefeProyecto) {
+        this.nombreJefeProyecto = nombreJefeProyecto;
+    }
+
+    public String getTrigramaJefeProyecto() {
+        return trigramaJefeProyecto;
+    }
+
+    public void setTrigramaJefeProyecto(String trigramaJefeProyecto) {
+        this.trigramaJefeProyecto = trigramaJefeProyecto;
     }
 
     public Instant getFccreacion() {
