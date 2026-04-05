@@ -126,11 +126,15 @@ VALUES (3, 'Rendición de Gastos', 'receipt_long', 2, CURRENT_TIMESTAMP(), CURRE
 
 -- 3. Subvistas para Administración (Accesos solicitados)
 INSERT INTO subvista (idsubvista, nombre, ruta, permiso, idmodulo, blconfiguracion, fccreacion, fcmodificacion, fceliminacion) 
-VALUES (1, 'Usuarios y Roles', '/admin/usuarios', 'ADMINISTRADOR', 1, true, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+VALUES (1, 'Usuarios', '/admin/usuarios', 'ADMINISTRADOR', 1, true, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
 INSERT INTO subvista (idsubvista, nombre, ruta, permiso, idmodulo, blconfiguracion, fccreacion, fcmodificacion, fceliminacion) 
 VALUES (2, 'Gerencias', '/admin/gerencias', 'ADMINISTRADOR', 1, true, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
 INSERT INTO subvista (idsubvista, nombre, ruta, permiso, idmodulo, blconfiguracion, fccreacion, fcmodificacion, fceliminacion) 
 VALUES (5, 'Proyectos', '/admin/proyectos', 'ADMINISTRADOR', 1, true, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO subvista (idsubvista, nombre, ruta, permiso, idmodulo, blconfiguracion, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (6, 'Países', '/admin/paises', 'ADMINISTRADOR', 1, true, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO subvista (idsubvista, nombre, ruta, permiso, idmodulo, blconfiguracion, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (7, 'Viaticos', '/admin/ciudades', 'ADMINISTRADOR', 1, true, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
 
 
 -- 4. Subvistas para otros mÓdulos
@@ -352,10 +356,89 @@ INSERT INTO proyecto (idproyecto, identificador, nombre, idgerencia, blactivo, f
 INSERT INTO proyecto (idproyecto, identificador, nombre, idgerencia, blactivo, fccreacion, fcmodificacion, fceliminacion) VALUES (202, 'SC-JHONAE', 'Transformación de Redes Quantum #202', 97, true, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
 INSERT INTO proyecto (idproyecto, identificador, nombre, idgerencia, blactivo, fccreacion, fcmodificacion, fceliminacion) VALUES (203, 'SP-E20RP0Q', 'Migración de Base de Datos 2025 #203', 29, true, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
 
+-- 8. Paises iniciales
+INSERT INTO pais (idpais, nombre, codigopais, lgnacional, lgactivo, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (1, 'Chile', 'CL', true, true, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO pais (idpais, nombre, codigopais, lgnacional, lgactivo, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (2, 'Argentina', 'AR', false, true, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO pais (idpais, nombre, codigopais, lgnacional, lgactivo, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (3, 'Perú', 'PE', false, true, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO pais (idpais, nombre, codigopais, lgnacional, lgactivo, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (4, 'Colombia', 'CO', false, true, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO pais (idpais, nombre, codigopais, lgnacional, lgactivo, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (5, 'Brasil', 'BR', false, true, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO pais (idpais, nombre, codigopais, lgnacional, lgactivo, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (6, 'Uruguay', 'UY', false, true, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO pais (idpais, nombre, codigopais, lgnacional, lgactivo, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (7, 'Bolivia', 'BO', false, true, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO pais (idpais, nombre, codigopais, lgnacional, lgactivo, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (8, 'Paraguay', 'PY', false, true, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO pais (idpais, nombre, codigopais, lgnacional, lgactivo, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (9, 'Ecuador', 'EC', false, true, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO pais (idpais, nombre, codigopais, lgnacional, lgactivo, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (10, 'México', 'MX', false, true, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+
+-- 9. Ciudades iniciales (con viáticos por defecto)
+-- Orden: idciudad, nombre, idpais, lgactivo, viaticoger, viaticojpr, viaticojar, viaticotec, viaticoaux, viaticoing, fccreacion, fcmodificacion, fceliminacion
+INSERT INTO ciudad (idciudad, nombre, idpais, lgactivo, viaticoger, viaticojpr, viaticojar, viaticotec, viaticoaux, viaticoing, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (1, 'Santiago', 1, true, 45000, 40000, 35000, 30000, 25000, 32000, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO ciudad (idciudad, nombre, idpais, lgactivo, viaticoger, viaticojpr, viaticojar, viaticotec, viaticoaux, viaticoing, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (2, 'Buenos Aires', 2, true, 120, 100, 90, 80, 70, 85, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO ciudad (idciudad, nombre, idpais, lgactivo, viaticoger, viaticojpr, viaticojar, viaticotec, viaticoaux, viaticoing, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (3, 'Lima', 3, true, 110, 95, 85, 75, 65, 80, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO ciudad (idciudad, nombre, idpais, lgactivo, viaticoger, viaticojpr, viaticojar, viaticotec, viaticoaux, viaticoing, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (4, 'Bogotá', 4, true, 115, 100, 90, 80, 70, 85, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO ciudad (idciudad, nombre, idpais, lgactivo, viaticoger, viaticojpr, viaticojar, viaticotec, viaticoaux, viaticoing, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (5, 'Brasilia', 5, true, 130, 110, 100, 90, 80, 95, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO ciudad (idciudad, nombre, idpais, lgactivo, viaticoger, viaticojpr, viaticojar, viaticotec, viaticoaux, viaticoing, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (6, 'Montevideo', 6, true, 125, 105, 95, 85, 75, 90, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO ciudad (idciudad, nombre, idpais, lgactivo, viaticoger, viaticojpr, viaticojar, viaticotec, viaticoaux, viaticoing, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (7, 'La Paz', 7, true, 100, 85, 75, 65, 55, 70, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO ciudad (idciudad, nombre, idpais, lgactivo, viaticoger, viaticojpr, viaticojar, viaticotec, viaticoaux, viaticoing, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (8, 'Asunción', 8, true, 105, 90, 80, 70, 60, 75, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO ciudad (idciudad, nombre, idpais, lgactivo, viaticoger, viaticojpr, viaticojar, viaticotec, viaticoaux, viaticoing, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (9, 'Quito', 9, true, 110, 95, 85, 75, 65, 80, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO ciudad (idciudad, nombre, idpais, lgactivo, viaticoger, viaticojpr, viaticojar, viaticotec, viaticoaux, viaticoing, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (10, 'Ciudad de México', 10, true, 140, 120, 110, 100, 90, 105, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+
+-- Capitales Regionales de Chile
+INSERT INTO ciudad (idciudad, nombre, idpais, lgactivo, viaticoger, viaticojpr, viaticojar, viaticotec, viaticoaux, viaticoing, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (11, 'Arica', 1, true, 45000, 40000, 35000, 30000, 25000, 32000, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO ciudad (idciudad, nombre, idpais, lgactivo, viaticoger, viaticojpr, viaticojar, viaticotec, viaticoaux, viaticoing, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (12, 'Iquique', 1, true, 45000, 40000, 35000, 30000, 25000, 32000, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO ciudad (idciudad, nombre, idpais, lgactivo, viaticoger, viaticojpr, viaticojar, viaticotec, viaticoaux, viaticoing, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (13, 'Antofagasta', 1, true, 48000, 42000, 38000, 32000, 28000, 35000, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO ciudad (idciudad, nombre, idpais, lgactivo, viaticoger, viaticojpr, viaticojar, viaticotec, viaticoaux, viaticoing, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (14, 'Copiapó', 1, true, 45000, 40000, 35000, 30000, 25000, 32000, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO ciudad (idciudad, nombre, idpais, lgactivo, viaticoger, viaticojpr, viaticojar, viaticotec, viaticoaux, viaticoing, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (15, 'La Serena', 1, true, 45000, 40000, 35000, 30000, 25000, 32000, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO ciudad (idciudad, nombre, idpais, lgactivo, viaticoger, viaticojpr, viaticojar, viaticotec, viaticoaux, viaticoing, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (16, 'Valparaíso', 1, true, 45000, 40000, 35000, 30000, 25000, 32000, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO ciudad (idciudad, nombre, idpais, lgactivo, viaticoger, viaticojpr, viaticojar, viaticotec, viaticoaux, viaticoing, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (17, 'Rancagua', 1, true, 42000, 38000, 32000, 28000, 22000, 30000, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO ciudad (idciudad, nombre, idpais, lgactivo, viaticoger, viaticojpr, viaticojar, viaticotec, viaticoaux, viaticoing, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (18, 'Talca', 1, true, 42000, 38000, 32000, 28000, 22000, 30000, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO ciudad (idciudad, nombre, idpais, lgactivo, viaticoger, viaticojpr, viaticojar, viaticotec, viaticoaux, viaticoing, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (19, 'Chillán', 1, true, 42000, 38000, 32000, 28000, 22000, 30000, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO ciudad (idciudad, nombre, idpais, lgactivo, viaticoger, viaticojpr, viaticojar, viaticotec, viaticoaux, viaticoing, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (20, 'Concepción', 1, true, 46000, 41000, 36000, 31000, 26000, 33000, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO ciudad (idciudad, nombre, idpais, lgactivo, viaticoger, viaticojpr, viaticojar, viaticotec, viaticoaux, viaticoing, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (21, 'Temuco', 1, true, 44000, 39000, 34000, 29000, 24000, 31000, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO ciudad (idciudad, nombre, idpais, lgactivo, viaticoger, viaticojpr, viaticojar, viaticotec, viaticoaux, viaticoing, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (22, 'Valdivia', 1, true, 44000, 39000, 34000, 29000, 24000, 31000, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO ciudad (idciudad, nombre, idpais, lgactivo, viaticoger, viaticojpr, viaticojar, viaticotec, viaticoaux, viaticoing, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (23, 'Puerto Montt', 1, true, 46000, 41000, 36000, 31000, 26000, 33000, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO ciudad (idciudad, nombre, idpais, lgactivo, viaticoger, viaticojpr, viaticojar, viaticotec, viaticoaux, viaticoing, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (24, 'Coyhaique', 1, true, 50000, 45000, 40000, 35000, 30000, 38000, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+INSERT INTO ciudad (idciudad, nombre, idpais, lgactivo, viaticoger, viaticojpr, viaticojar, viaticotec, viaticoaux, viaticoing, fccreacion, fcmodificacion, fceliminacion) 
+VALUES (25, 'Punta Arenas', 1, true, 55000, 50000, 45000, 40000, 35000, 42000, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), NULL);
+
 -- 7. Sincronizar secuencias para H2 (Identity Columns)
 ALTER TABLE proyecto ALTER COLUMN idproyecto RESTART WITH 204;
 ALTER TABLE gerencia ALTER COLUMN idgerencia RESTART WITH 104;
 ALTER TABLE modulo ALTER COLUMN idmodulo RESTART WITH 4;
-ALTER TABLE subvista ALTER COLUMN idsubvista RESTART WITH 6;
+ALTER TABLE subvista ALTER COLUMN idsubvista RESTART WITH 8;
 ALTER TABLE usuario ALTER COLUMN idusuario RESTART WITH 502;
+ALTER TABLE pais ALTER COLUMN idpais RESTART WITH 11;
+ALTER TABLE ciudad ALTER COLUMN idciudad RESTART WITH 26;
 
